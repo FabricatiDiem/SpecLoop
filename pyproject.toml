@@ -10,6 +10,10 @@ dependencies = [
     "click>=8.0.0",
 ]
 
+[project.scripts]
+skills = "agent_agnostic.cli:cli"
+speckit-loop = "speckit_loop.cli:cli"
+
 [tool.ruff]
 line-length = 88
 target-version = "py311"
