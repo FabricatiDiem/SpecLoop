@@ -64,14 +64,16 @@ You are a senior software engineer specialized in code quality...
 To synchronize all capabilities (skills, tools, scripts, subagents) with a specific agent, run:
 
 ```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+
 # Sync with Claude Code
-python -m agent_agnostic deploy --target claude
+python -m agent_agnostic.cli deploy --target claude
 
 # Sync with Gemini CLI
-python -m agent_agnostic deploy --target gemini
+python -m agent_agnostic.cli deploy --target gemini
 
 # Sync with OpenCode
-python -m agent_agnostic deploy --target opencode
+python -m agent_agnostic.cli deploy --target opencode
 ```
 
 ## 6. Verification

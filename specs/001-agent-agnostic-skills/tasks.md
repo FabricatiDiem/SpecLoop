@@ -88,11 +88,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T017 [P] [US3] Implement subagent discovery logic (parsing system prompt and frontmatter) in `src/agent_agnostic/discovery.py`
-- [ ] T018 [P] [US3] Create a sample "Code Reviewer" subagent in `subagents/code_reviewer.md` with dependencies on `greet-user`
-- [ ] T019 [US3] Update deployment logic to include subagent "installation" (harness-specific config updates) in `src/agent_agnostic/deployment/`
-- [ ] T020 [US3] Implement MCP-compliant script runner for Python/Shell scripts in `src/agent_agnostic/runner/server.py`
-- [ ] T021 [US3] Integrate script runner discovery and deployment into the manifest and CLI
+- [X] T017 [P] [US3] Implement subagent discovery logic (parsing system prompt and frontmatter) in `src/agent_agnostic/discovery.py`
+- [X] T018 [P] [US3] Create a sample "Code Reviewer" subagent in `subagents/code_reviewer.md` with dependencies on `greet-user`
+- [X] T019 [US3] Update deployment logic to include subagent "installation" (harness-specific config updates) in `src/agent_agnostic/deployment/`
+- [X] T020 [US3] Implement MCP-compliant script runner for Python/Shell scripts in `src/agent_agnostic/runner/server.py`
+- [X] T021 [US3] Integrate script runner discovery and deployment into the manifest and CLI
 
 **Checkpoint**: All user stories should now be independently functional.
 
@@ -102,10 +102,10 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T022 [P] Finalize `quickstart.md` with concrete CLI command examples
-- [ ] T023 [P] Add README documentation for the `agent_agnostic` framework in `src/agent_agnostic/README.md`
-- [ ] T024 Run full verification of all capability types across all target agents
-- [ ] T025 Code cleanup and docstring additions across `src/agent_agnostic/`
+- [X] T022 [P] Finalize `quickstart.md` with concrete CLI command examples
+- [X] T023 [P] Add README documentation for the `agent_agnostic` framework in `src/agent_agnostic/README.md`
+- [X] T024 Run full verification of all capability types across all target agents
+- [X] T025 Code cleanup and docstring additions across `src/agent_agnostic/`
 
 ---
 
