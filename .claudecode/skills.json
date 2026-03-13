@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "repository": "newSkills",
+  "skills": [
+    {
+      "id": "greet_user",
+      "name": "Greet User",
+      "path": "skills/greet_user.md",
+      "metadata": {
+        "name": "Greet User",
+        "description": "A simple natural language skill to greet a user.",
+        "inputs": [
+          {
+            "name": "user_name",
+            "description": "The name of the user to greet."
+          }
+        ],
+        "handoffs": [
+          {
+            "label": "Next Step",
+            "agent": "other.skill",
+            "prompt": "Proceed to the next task..."
+          }
+        ]
+      },
+      "tags": []
+    }
+  ],
+  "tools": [
+    {
+      "id": "hello_world",
+      "name": "Hello World",
+      "type": "mcp",
+      "command": "python mcp_servers/hello_world/server.py",
+      "env": {},
+      "capabilities": []
+    }
+  ],
+  "subagents": [
+    {
+      "id": "code_reviewer",
+      "name": "Code Reviewer",
+      "path": "subagents/code_reviewer.md",
+      "system_prompt": "# Code Reviewer Instructions\n\nYou are a senior software engineer. Your task is to review code submitted by the user.\n1. Use the 'greet_user' skill to start the session.\n2. Analyze the code for common patterns and potential bugs.\n3. Suggest improvements based on best practices.",
+      "dependencies": {
+        "skills": [
+          "greet_user"
+        ],
+        "tools": [
+          "hello_world"
+        ],
+        "scripts": [
+          "lint_check"
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "id": "lint_check",
+      "name": "Lint Check",
+      "interpreter": "bash",
+      "path": "scripts/lint_check.sh",
+      "args": []
+    }
+  ]
+}
