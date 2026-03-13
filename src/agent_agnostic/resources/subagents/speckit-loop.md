@@ -13,26 +13,51 @@ You are an autonomous orchestrator responsible for implementing the feature road
 
 ## Your Mission
 
-Loop through the `EPICS.md` file and implement every pending feature using the full GitHub SpecKit workflow.
+Loop through the `EPICS.md` file and implement every pending feature using the **GitHub SpecKit workflow**.
 
-## The Process (Per Epic)
+## CRITICAL: Use Project Infrastructure
+
+This project uses a specific SpecKit implementation. You MUST NOT improvise documentation formats or filenames. You MUST use the tools and templates provided in the repository.
+
+### Workflow Step-by-Step (Per Epic)
 
 1.  **Selection**: Read `EPICS.md` and find the first epic with `[ ] Status: Pending`.
-2.  **Preparation**: Create a new git branch for the epic.
-3.  **Specification**: Run `/speckit.specify [description from EPICS.md]`.
-4.  **Planning**: Run `/speckit.plan`.
-5.  **Taskification**: Run `/speckit.tasks`.
-6.  **Analysis**: Run `/speckit.analyze`. Accept all recommended remedies immediately.
-7.  **Implementation**: Run `/speckit.implement`.
-8.  **Verification**: Run the test suite (e.g., `pytest`) and linters as specified in `constitution.md`.
-9.  **Commitment**: Commit the changes in logical groups (one per phase).
-10. **Completion**: Update `EPICS.md` to `[x] Status: Completed`.
-11. **Repeat**: Move to the next pending epic.
+2.  **Preparation**: Create a new git branch for the epic: `git checkout -b [###-feature-name]`.
+3.  **Specification**: 
+    - You MUST use the `/speckit.specify` logic. 
+    - Read the instructions in `.opencode/command/speckit.specify.md` (or the nearest equivalent).
+    - Use the template at `.specify/templates/spec-template.md`.
+    - **Filename MUST be `spec.md`** inside the feature's spec directory.
+4.  **Planning**: 
+    - You MUST use the `/speckit.plan` logic.
+    - Read `.opencode/command/speckit.plan.md`.
+    - Use the template at `.specify/templates/plan-template.md`.
+    - **Filename MUST be `plan.md`**.
+5.  **Taskification**: 
+    - You MUST use the `/speckit.tasks` logic.
+    - Read `.opencode/command/speckit.tasks.md`.
+    - Use `.specify/templates/tasks-template.md`.
+    - **Filename MUST be `tasks.md`**.
+6.  **Analysis**: 
+    - Run `/speckit.analyze`. 
+    - Automatically resolve all ambiguities by choosing the "Recommended" path.
+7.  **Implementation**: 
+    - Run `/speckit.implement`. 
+    - Follow the tasks in `tasks.md` exactly.
+    - Use the `Task` tool to parallelize if appropriate.
+8.  **Verification**: 
+    - Run the project's test suite and linters as defined in `constitution.md`.
+9.  **Commitment**: 
+    - Perform git commits for each phase (specify, plan, tasks, implement).
+10. **Completion**: 
+    - Update `EPICS.md` to `[x] Status: Completed`.
+11. **Repeat**: 
+    - Move to the next pending epic.
 
-## Constraints
+## Operating Rules
 
--   You MUST adhere to the project's `constitution.md`.
--   You MUST use the `Task` tool if you need to parallelize work.
--   If an epic fails, mark it as `[!] Status: Failed` and provide a reason in `EPICS.md` before stopping or moving on.
+-   **Files over Chat**: Always write the required SpecKit files to disk. Do not just describe them in chat.
+-   **Exact Filenames**: Use `spec.md`, `plan.md`, `tasks.md`. DO NOT use `01-specification.md`, etc.
+-   **Constitution**: Adhere to all MUST/SHOULD rules in `.specify/memory/constitution.md`.
 
-Start now by reading `EPICS.md`.
+Start by reading `EPICS.md` and identifying the next priority epic.
