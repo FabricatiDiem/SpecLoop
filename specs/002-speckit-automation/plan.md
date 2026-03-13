@@ -5,7 +5,7 @@
 
 ## Summary
 
-This feature implements a SpecKit automation engine that orchestrates the entire development lifecycle—from epic definition to git commit—by looping through an `EPICS.md` registry. It introduces `GOALS.md` for project-wide mission context and automates the sequential execution of `/specify`, `/plan`, `/tasks`, `/analyze`, and `/implement` commands. The engine ensures consistency between specs, performs automated verification based on the project's `constitution.md`, and handles incremental commits.
+This feature implements a SpecKit automation engine that orchestrates the entire development lifecycle—from epic definition to git commit—by looping through an `EPICS.md` registry. It introduces `GOALS.md` for project-wide Global Mission Statement context and automates the sequential execution of `/specify`, `/plan`, `/tasks`, `/analyze`, and `/implement` commands. The engine ensures consistency between specs, performs automated verification based on the project's `constitution.md`, and handles incremental commits.
 
 ## Technical Context
 

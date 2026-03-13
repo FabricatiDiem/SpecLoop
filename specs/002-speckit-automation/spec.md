@@ -36,7 +36,7 @@ As a project manager, I want the automation script to loop through all unfinishe
 
 ---
 
-### User Story 3 - Contextual Awareness via GOALS.md (Priority: P3)
+### User Story 3 - Contextual Awareness via Global Mission Statement (Priority: P3)
 
 As a developer, I want the automation script to reference `GOALS.md` so that the generated specifications and plans are aligned with the overall project mission.
 
@@ -45,7 +45,7 @@ As a developer, I want the automation script to reference `GOALS.md` so that the
 
 **Acceptance Scenarios**:
 
-1. **Given** a Mission Statement in `GOALS.md`, **When** `/speckit.specify` is invoked by the script, **Then** the global mission context is provided to the agent.
+1. **Given** a Global Mission Statement in `GOALS.md`, **When** `/speckit.specify` is invoked by the script, **Then** the global mission context is provided to the agent.
 
 ## Requirements *(mandatory)*
 
@@ -56,7 +56,7 @@ As a developer, I want the automation script to reference `GOALS.md` so that the
 - **FR-003**: The script MUST orchestrate the following sequence: Specify → Plan → Tasks → Analyze → Implement → Test → Commit.
 - **FR-004**: During the `/speckit.analyze` phase, the script MUST automatically accept recommended remedies for questions or ambiguities to maintain flow.
 - **FR-005**: The script MUST use verification tools (linting, testing) specified in `constitution.md`.
-- **FR-006**: The script MUST perform git commits grouped into logical segments (e.g., per task or per phase).
+- **FR-006**: The script MUST perform git commits grouped into logical segments (e.g., one commit per phase: specify, plan, implement).
 - **FR-007**: The script MUST update `EPICS.md` status (e.g., changing `[ ]` to `[x]`) upon successful completion of an epic.
 - **FR-008**: The script MUST loop until no unfinished epics remain in `EPICS.md`.
 

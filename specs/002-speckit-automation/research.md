@@ -13,7 +13,7 @@
 
 - **Decision**: The Python orchestrator will use `subprocess` to invoke the agent-based commands (e.g., `opencode speckit.specify`).
 - **Rationale**: Since SpecKit commands are delivered via agent-specific files (`.opencode/command/`), the loop runner must act as a harness that feeds the correct inputs to the agent and monitors the resulting file outputs.
-- **Handling Ambiguity**: For commands like `/speckit.analyze`, the orchestrator will pass a flag or pre-prompt indicating "auto-remedy" mode, instructing the agent to choose the recommended path without waiting for confirmation.
+- **Handling Ambiguity**: For commands like `/speckit.analyze`, the orchestrator will pass a pre-prompt instruction: "You are running in an autonomous loop. For any ambiguities or decision points, proceed with the 'Recommended' action immediately without requesting user input." This ensures non-blocking execution while maintaining SpecKit's quality standards.
 
 ## Recursive Loop Mechanism
 
