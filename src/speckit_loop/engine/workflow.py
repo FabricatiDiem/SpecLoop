@@ -49,12 +49,16 @@ class WorkflowEngine:
             "speckit.analyze",
             pre_prompt="You are running in an autonomous loop. For any ambiguities or decision points, proceed with the 'Recommended' action immediately without requesting user input.",
         )
+        self.git.commit_changes(f"docs: analyze and remedy {epic_title}")
 
         # 6. Implement
         self.orchestrator.run_command("speckit.implement")
+        # Self-verification gate (T014)
+        print("Running self-verification gate...")
+        self.orchestrator.run_command(
+            "verify-code",
+            pre_prompt="Review logs and debug statements for recent implementation.",
+        )
         self.git.commit_changes(f"feat: implement {epic_title}")
-
-        # 7. Verify (Placeholder for now)
-        print("Verifying implementation...")
 
         return True

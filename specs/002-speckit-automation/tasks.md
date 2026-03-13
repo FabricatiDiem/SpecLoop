@@ -24,9 +24,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan: `src/speckit_loop/engine/`, `src/speckit_loop/parsers/`, `src/speckit_loop/git/`
-- [ ] T002 [P] Initialize Python dependencies in `pyproject.toml` (click, pydantic, pyyaml)
-- [ ] T003 [P] Configure linting and formatting (Ruff) in `pyproject.toml`
+- [X] T001 Create project structure per implementation plan: `src/speckit_loop/engine/`, `src/speckit_loop/parsers/`, `src/speckit_loop/git/`
+- [X] T002 [P] Initialize Python dependencies in `pyproject.toml` (click, pydantic, pyyaml)
+- [X] T003 [P] Configure linting and formatting (Ruff) in `pyproject.toml`
 
 ---
 
@@ -36,10 +36,10 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Implement `EPICS.md` parser using Pydantic models in `src/speckit_loop/parsers/epic_parser.py`
-- [ ] T005 [P] Implement `GOALS.md` parser in `src/speckit_loop/parsers/goal_parser.py`
-- [ ] T006 [P] Implement Git wrapper for branch creation and grouped commits in `src/speckit_loop/git/wrapper.py`
-- [ ] T007 Initialize CLI entry point with `run` command in `src/speckit_loop/cli.py`
+- [X] T004 Implement `EPICS.md` parser using Pydantic models in `src/speckit_loop/parsers/epic_parser.py`
+- [X] T005 [P] Implement `GOALS.md` parser in `src/speckit_loop/parsers/goal_parser.py`
+- [X] T006 [P] Implement Git wrapper for branch creation and grouped commits in `src/speckit_loop/git/wrapper.py`
+- [X] T007 Initialize CLI entry point with `run` command in `src/speckit_loop/cli.py`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -53,21 +53,21 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 Implement the core Workflow engine (state transitions) in `src/speckit_loop/engine/workflow.py`
-- [ ] T009 Implement subprocess command orchestration for SpecKit agent calls in `src/speckit_loop/engine/orchestrator.py`
-- [ ] T010 [P] Implement dynamic tool discovery from `constitution.md` in `src/speckit_loop/engine/verifier.py`
-- [ ] T011 [US1] Integrate `SPECIFY` and `PLAN` phases into the loop runner
-- [ ] T012 [US1] Integrate `TASKS`, `ANALYZE`, and `IMPLEMENT` phases into the loop runner
-- [ ] T013 [US1] Implement "auto-remedy" logic for the `ANALYZE` phase to accept recommended actions
-- [ ] T014 [US1] Implement self-verification gate (logs/debug/unit tests) for generated code in `IMPLEMENT` phase
-- [ ] T015 [US1] Implement `VERIFY` phase: trigger linter check per `constitution.md`
-- [ ] T016 [US1] Implement `VERIFY` phase: trigger unit test suite per `constitution.md`
-- [ ] T017 [US1] Implement `COMMIT` phase using the Git wrapper for grouped commits (per phase)
-- [ ] T018 [US2] Implement the main loop logic to select and process epics until none remain in `src/speckit_loop/engine/loop.py`
-- [ ] T019 [US2] Implement logic to update epic status in `EPICS.md` (e.g., [ ] -> [x]) in `src/speckit_loop/parsers/epic_parser.py`
-- [ ] T020 [US2] Add error handling and reporting for failed epics within the loop
-- [ ] T021 [US3] Update the orchestration engine to inject `GOALS.md` context into the SpecKit agent prompts
-- [ ] T022 [US3] Verify that generated specs reflect global project constraints
+- [X] T008 Implement the core Workflow engine (state transitions) in `src/speckit_loop/engine/workflow.py`
+- [X] T009 Implement subprocess command orchestration for SpecKit agent calls in `src/speckit_loop/engine/orchestrator.py`
+- [X] T010 [P] Implement dynamic tool discovery from `constitution.md` in `src/speckit_loop/engine/verifier.py`
+- [X] T011 [US1] Integrate `SPECIFY` and `PLAN` phases into the loop runner
+- [X] T012 [US1] Integrate `TASKS`, `ANALYZE`, and `IMPLEMENT` phases into the loop runner
+- [X] T013 [US1] Implement "auto-remedy" logic for the `ANALYZE` phase to accept recommended actions
+- [X] T014 [US1] Implement self-verification gate (logs/debug/unit tests) for generated code in `IMPLEMENT` phase
+- [X] T015 [US1] Implement `VERIFY` phase: trigger linter check per `constitution.md`
+- [X] T016 [US1] Implement `VERIFY` phase: trigger unit test suite per `constitution.md`
+- [X] T017 [US1] Implement `COMMIT` phase using the Git wrapper for grouped commits (per phase)
+- [X] T018 [US2] Implement the main loop logic to select and process epics until none remain in `src/speckit_loop/engine/loop.py`
+- [X] T019 [US2] Implement logic to update epic status in `EPICS.md` (e.g., [ ] -> [x]) in `src/speckit_loop/parsers/epic_parser.py`
+- [X] T020 [US2] Add error handling and reporting for failed epics within the loop
+- [X] T021 [US3] Update the orchestration engine to inject `GOALS.md` context into the SpecKit agent prompts
+- [X] T022 [US3] Verify that generated specs reflect global project constraints
 - [ ] T023 [P] Finalize `quickstart.md` with concrete execution examples
 - [ ] T024 [P] Add README documentation for the SpecKit Loop engine in `src/speckit_loop/README.md`
 - [ ] T025 Run full system verification with a multi-epic test project

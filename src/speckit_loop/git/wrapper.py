@@ -16,7 +16,14 @@ class GitWrapper:
         else:
             subprocess.run(["git", "add", "."], check=True)
 
-        subprocess.run(["git", "commit", "-m", message], check=True)
+        # Check if there are changes to commit
+        status = subprocess.run(
+            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
+        )
+        if status.stdout.strip():
+            subprocess.run(["git", "commit", "-m", message], check=True)
+        else:
+            print("No changes to commit.")
 
     @staticmethod
     def get_current_branch() -> str:

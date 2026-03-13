@@ -3,9 +3,9 @@
 ## [Add Documentation]
 Description: Create comprehensive README and internal docs.
 Priority: 1
-- [~] Status: In Progress
+- [!] Status: Failed
 
 ## [Add Unit Tests]
 Description: Implement test suite for core components.
 Priority: 2
-- [ ] Status: Pending
+- [~] Status: In Progress
