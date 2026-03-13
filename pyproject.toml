@@ -14,6 +14,16 @@ dependencies = [
 skills = "agent_agnostic.cli:cli"
 speckit-loop = "speckit_loop.cli:cli"
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+include = ["src/agent_agnostic", "src/speckit_loop"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
+
 [tool.ruff]
 line-length = 88
 target-version = "py311"

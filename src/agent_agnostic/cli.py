@@ -67,14 +67,19 @@ def verify(manifest, schema):
     manifest_path = current_path / manifest
 
     if not schema:
-        # Search current and parent directories for the schema
-        search_dirs = [current_path] + list(current_path.parents)
-        schema_path = None
-        for d in search_dirs:
-            possible_schemas = list(d.glob("specs/**/skills-schema.json"))
-            if possible_schemas:
-                schema_path = possible_schemas[0]
-                break
+        # 1. Try bundled schema first
+        bundled_schema = Path(__file__).parent / "schema" / "skills-schema.json"
+        if bundled_schema.exists():
+            schema_path = bundled_schema
+        else:
+            # 2. Fallback to searching current and parent directories
+            search_dirs = [current_path] + list(current_path.parents)
+            schema_path = None
+            for d in search_dirs:
+                possible_schemas = list(d.glob("specs/**/skills-schema.json"))
+                if possible_schemas:
+                    schema_path = possible_schemas[0]
+                    break
 
         if not schema_path:
             click.echo(
