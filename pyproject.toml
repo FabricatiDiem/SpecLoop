@@ -1,6 +1,22 @@
 [project]
 name = "newskills"
 version = "0.1.0"
-description = "Add your description here"
-requires-python = ">=3.13"
-dependencies = []
+description = "Agent-Agnostic Skills Framework"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=0.1.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

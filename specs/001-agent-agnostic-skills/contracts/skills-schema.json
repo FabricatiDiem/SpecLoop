@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skills Manifest Schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "metadata": { "type": "object" }
+        },
+        "required": ["id", "name", "path"]
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["mcp"] },
+          "command": { "type": "string" },
+          "env": { "type": "object" },
+          "capabilities": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "name", "type", "command"]
+      }
+    },
+    "subagents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "system_prompt": { "type": "string" },
+          "dependencies": {
+            "type": "object",
+            "properties": {
+              "skills": { "type": "array", "items": { "type": "string" } },
+              "tools": { "type": "array", "items": { "type": "string" } },
+              "scripts": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "required": ["id", "name", "path"]
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "interpreter": { "type": "string", "enum": ["python", "bash"] },
+          "path": { "type": "string" },
+          "args": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "name", "interpreter", "path"]
+      }
+    }
+  },
+  "required": ["version", "skills", "tools", "subagents", "scripts"]
+}
