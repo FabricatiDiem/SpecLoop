@@ -68,10 +68,10 @@
 - [X] T020 [US2] Add error handling and reporting for failed epics within the loop
 - [X] T021 [US3] Update the orchestration engine to inject `GOALS.md` context into the SpecKit agent prompts
 - [X] T022 [US3] Verify that generated specs reflect global project constraints
-- [ ] T023 [P] Finalize `quickstart.md` with concrete execution examples
-- [ ] T024 [P] Add README documentation for the SpecKit Loop engine in `src/speckit_loop/README.md`
-- [ ] T025 Run full system verification with a multi-epic test project
-- [ ] T026 Code cleanup and docstring additions across `src/speckit_loop/`
+- [X] T023 [P] Finalize `quickstart.md` with concrete execution examples
+- [X] T024 [P] Add README documentation for the SpecKit Loop engine in `src/speckit_loop/README.md`
+- [X] T025 Run full system verification with a multi-epic test project
+- [X] T026 Code cleanup and docstring additions across `src/speckit_loop/`
 
 ---
 
