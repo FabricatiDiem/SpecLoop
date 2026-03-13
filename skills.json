@@ -3,6 +3,15 @@
   "repository": "newSkills",
   "skills": [
     {
+      "id": "speckit_loop",
+      "name": "Speckit_Loop",
+      "path": "skills/speckit_loop.md",
+      "metadata": {
+        "description": "Start the autonomous SpecKit development loop"
+      },
+      "tags": []
+    },
+    {
       "id": "greet_user",
       "name": "Greet User",
       "path": "skills/greet_user.md",
@@ -37,6 +46,17 @@
     }
   ],
   "subagents": [
+    {
+      "id": "speckit-loop",
+      "name": "Speckit Loop",
+      "path": "subagents/speckit-loop.md",
+      "system_prompt": "# SpecKit Loop Agent\n\nYou are an autonomous orchestrator responsible for implementing the feature roadmap defined in `EPICS.md`.\n\n## Your Mission\n\nLoop through the `EPICS.md` file and implement every pending feature using the full GitHub SpecKit workflow.\n\n## The Process (Per Epic)\n\n1.  **Selection**: Read `EPICS.md` and find the first epic with `[ ] Status: Pending`.\n2.  **Preparation**: Create a new git branch for the epic.\n3.  **Specification**: Run `/speckit.specify [description from EPICS.md]`.\n4.  **Planning**: Run `/speckit.plan`.\n5.  **Taskification**: Run `/speckit.tasks`.\n6.  **Analysis**: Run `/speckit.analyze`. Accept all recommended remedies immediately.\n7.  **Implementation**: Run `/speckit.implement`.\n8.  **Verification**: Run the test suite (e.g., `pytest`) and linters as specified in `constitution.md`.\n9.  **Commitment**: Commit the changes in logical groups (one per phase).\n10. **Completion**: Update `EPICS.md` to `[x] Status: Completed`.\n11. **Repeat**: Move to the next pending epic.\n\n## Constraints\n\n-   You MUST adhere to the project's `constitution.md`.\n-   You MUST use the `Task` tool if you need to parallelize work.\n-   If an epic fails, mark it as `[!] Status: Failed` and provide a reason in `EPICS.md` before stopping or moving on.\n\nStart now by reading `EPICS.md`.",
+      "dependencies": {
+        "skills": [],
+        "tools": [],
+        "scripts": []
+      }
+    },
     {
       "id": "code_reviewer",
       "name": "Code Reviewer",

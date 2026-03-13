@@ -34,9 +34,16 @@ def init():
     """Initialize a new project with the skills framework structure."""
     root_path = Path(".").absolute()
 
-    dirs = ["skills", "mcp_servers", "subagents", "scripts"]
+    dirs = [
+        "skills",
+        "mcp_servers",
+        "subagents",
+        "scripts",
+        ".opencode/agents",
+        ".opencode/command",
+    ]
     for d in dirs:
-        (root_path / d).mkdir(exist_ok=True)
+        (root_path / d).mkdir(parents=True, exist_ok=True)
         click.echo(f"Created directory: {d}/")
 
     # Create EPICS.md if it doesn't exist
@@ -59,44 +66,6 @@ def init():
 
 
 @cli.command()
-@click.option("--manifest", default="skills.json", help="Path to manifest file")
-@click.option("--schema", help="Path to schema file")
-def verify(manifest, schema):
-    """Verify a manifest file against a schema."""
-    current_path = Path(".").absolute()
-    manifest_path = current_path / manifest
-
-    if not schema:
-        # 1. Try bundled schema first
-        bundled_schema = Path(__file__).parent / "schema" / "skills-schema.json"
-        if bundled_schema.exists():
-            schema_path = bundled_schema
-        else:
-            # 2. Fallback to searching current and parent directories
-            search_dirs = [current_path] + list(current_path.parents)
-            schema_path = None
-            for d in search_dirs:
-                possible_schemas = list(d.glob("specs/**/skills-schema.json"))
-                if possible_schemas:
-                    schema_path = possible_schemas[0]
-                    break
-
-        if not schema_path:
-            click.echo(
-                "Error: Could not find skills-schema.json automatically. Please provide --schema."
-            )
-            return
-    else:
-        schema_path = Path(schema).absolute()
-
-    click.echo(f"Verifying {manifest_path} against {schema_path}...")
-    if validate_manifest(str(manifest_path), str(schema_path)):
-        click.echo("✓ Manifest is valid.")
-    else:
-        click.echo("✗ Manifest validation failed.")
-
-
-@cli.command()
 @click.option(
     "--target",
     required=True,
@@ -104,16 +73,22 @@ def verify(manifest, schema):
     help="Target harness to deploy to",
 )
 @click.option("--manifest", default="skills.json", help="Path to manifest file")
-def deploy(target, manifest):
+@click.option(
+    "--autodiscover/--no-autodiscover",
+    default=True,
+    help="Automatically run discovery before deployment",
+)
+def deploy(target, manifest, autodiscover):
     """Deploy skills and tools to a target harness."""
     root_path = Path(".").absolute()
     manifest_path = root_path / manifest
 
-    if not manifest_path.exists():
-        click.echo(f"Error: Manifest {manifest_path} not found. Run 'discover' first.")
-        return
-
-    manifest_obj = get_manifest_from_file(str(manifest_path))
+    if autodiscover or not manifest_path.exists():
+        click.echo("Running discovery...")
+        manifest_obj = generate_manifest(root_path)
+        save_manifest(manifest_obj, manifest_path)
+    else:
+        manifest_obj = get_manifest_from_file(str(manifest_path))
 
     deployer = None
     if target == "claude":
@@ -125,6 +100,10 @@ def deploy(target, manifest):
 
     if deployer and deployer.deploy():
         click.echo(f"✓ Deployment to {target} successful.")
+        click.echo(f"  - Skills: {len(manifest_obj.skills)}")
+        click.echo(f"  - Subagents: {len(manifest_obj.subagents)}")
+        click.echo(f"  - Tools: {len(manifest_obj.tools)}")
+        click.echo(f"  - Scripts: {len(manifest_obj.scripts)}")
     else:
         click.echo(f"✗ Deployment to {target} failed.")
 
