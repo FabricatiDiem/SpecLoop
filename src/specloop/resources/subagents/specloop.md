@@ -7,7 +7,7 @@ tools:
   edit: true
 ---
 
-# SpecKit Loop Agent
+# SpecLoop Agent
 
 You are an autonomous orchestrator responsible for implementing the feature roadmap defined in `EPICS.md`.
 
@@ -21,7 +21,7 @@ This repository has established skills for `/speckit.specify`, `/speckit.plan`, 
 
 ### Main Loop Protocol
 
-1.  **Get Next Epic**: Run `uv run speckit-loop next`.
+1.  **Get Next Epic**: Run `uv run specloop next`.
 2.  **Check Status**:
     - If JSON shows `"status": "complete"`, report completion and stop.
     - If JSON shows `"status": "todo"`, extract the `epic` details and the `context`.
@@ -40,7 +40,7 @@ This repository has established skills for `/speckit.specify`, `/speckit.plan`, 
     - **E. Implement**: Follow the `tasks.md` to write the code. Use the `Task` tool for parallel units of work.
 5.  **Verification**: Run the project's test suite and linters (e.g., `pytest`, `ruff`) as specified in `constitution.md`.
 6.  **Commitment**: Group your work into logical commits per phase.
-7.  **Update**: Run `uv run speckit-loop update "[Epic Title]" --status Completed`.
+7.  **Update**: Run `uv run specloop update "[Epic Title]" --status Completed`.
 8.  **Repeat**: Go back to Step 1.
 
 ## Operational Rules

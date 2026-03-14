@@ -3,7 +3,7 @@ import yaml
 import os
 from pathlib import Path
 from typing import List, Dict, Optional
-from agent_agnostic.models.manifest import (
+from specloop.models.manifest import (
     Manifest,
     Skill,
     Tool,

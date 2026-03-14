@@ -1,8 +1,8 @@
 from enum import Enum
 from pathlib import Path
 from typing import List, Dict
-from speckit_loop.engine.orchestrator import Orchestrator
-from speckit_loop.git.wrapper import GitWrapper
+from specloop.engine.orchestrator import Orchestrator
+from specloop.git.wrapper import GitWrapper
 
 
 class WorkflowPhase(Enum):

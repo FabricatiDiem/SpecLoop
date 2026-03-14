@@ -1,4 +1,4 @@
-# newSkills Toolkit
+# SpecLoop Toolkit
 
 An agent-agnostic framework for developing, deploying, and automating AI capabilities (skills, tools, subagents).
 
@@ -13,20 +13,20 @@ An agent-agnostic framework for developing, deploying, and automating AI capabil
 To use this toolkit in another project, install it directly from GitHub:
 
 ```bash
-pip install git+https://github.com/anomalyco/newSkills.git
+pip install git+https://github.com/anomalyco/SpecLoop.git
 ```
 
 Or using `uv`:
 
 ```bash
-uv add git+https://github.com/anomalyco/newSkills.git
+uv add git+https://github.com/anomalyco/SpecLoop.git
 ```
 
 ## Getting Started in a New Project
 
 1. **Initialize the structure**:
    ```bash
-   skills init
+   specloop init
    ```
    This creates the necessary directories (`skills/`, `subagents/`, etc.) and template `EPICS.md` / `GOALS.md` files.
 
@@ -54,7 +54,7 @@ uv add git+https://github.com/anomalyco/newSkills.git
 
 5. **Run the automation loop**:
    ```bash
-   speckit-loop run
+   specloop run
    ```
 
 ## Development
@@ -67,8 +67,8 @@ uv sync
 export PYTHONPATH=src
 
 # Run discovery
-python -m agent_agnostic.cli discover
+python -m specloop.cli discover
 
 # Run automation loop
-python -m speckit_loop.cli run
+python -m specloop.cli run
 ```

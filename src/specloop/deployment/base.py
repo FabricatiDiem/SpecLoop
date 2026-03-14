@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-from agent_agnostic.models.manifest import Manifest
+from specloop.models.manifest import Manifest
+
 
 class BaseDeployment(ABC):
     def __init__(self, manifest: Manifest, root_dir: Path):

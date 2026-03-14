@@ -1,9 +1,9 @@
 from pathlib import Path
-from speckit_loop.parsers.epic_parser import EpicParser, EpicStatus
-from speckit_loop.parsers.goal_parser import GoalParser
-from speckit_loop.engine.workflow import WorkflowEngine
-from speckit_loop.engine.verifier import Verifier
-from speckit_loop.git.wrapper import GitWrapper
+from specloop.parsers.epic_parser import EpicParser, EpicStatus
+from specloop.parsers.goal_parser import GoalParser
+from specloop.engine.workflow import WorkflowEngine
+from specloop.engine.verifier import Verifier
+from specloop.git.wrapper import GitWrapper
 
 
 class LoopRunner:
@@ -37,7 +37,7 @@ class LoopRunner:
                 break
 
             current_epic = unfinished[0]
-            print(f"Processing Epic: {current_epic.title}")
+            print(f"Starting SpecLoop with {self.epics_path.name}")
 
             # Update status to In Progress
             EpicParser.update_status(

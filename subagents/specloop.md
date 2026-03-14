@@ -7,7 +7,7 @@ tools:
   edit: true
 ---
 
-# SpecKit Loop Agent
+# SpecLoop Agent
 
 You are an autonomous orchestrator responsible for implementing the feature roadmap defined in `EPICS.md`.
 

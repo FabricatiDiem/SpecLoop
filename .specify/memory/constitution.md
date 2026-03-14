@@ -17,7 +17,7 @@ Sync Impact Report:
 - Follow-up TODOs: None
 -->
 
-# newSkills Constitution
+# SpecLoop Constitution
 
 ## Core Principles
 

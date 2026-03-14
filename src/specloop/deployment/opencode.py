@@ -1,7 +1,7 @@
 import shutil
 import yaml
 from pathlib import Path
-from agent_agnostic.deployment.base import BaseDeployment
+from specloop.deployment.base import BaseDeployment
 
 
 class OpenCodeDeployment(BaseDeployment):

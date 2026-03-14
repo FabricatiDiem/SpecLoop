@@ -1,15 +1,20 @@
 import click
+import json
 from pathlib import Path
-from agent_agnostic.discovery import generate_manifest, save_manifest
-from agent_agnostic.models.validator import validate_manifest, get_manifest_from_file
-from agent_agnostic.deployment.claude import ClaudeDeployment
-from agent_agnostic.deployment.gemini import GeminiDeployment
-from agent_agnostic.deployment.opencode import OpenCodeDeployment
+import os
+from specloop.discovery import generate_manifest, save_manifest
+from specloop.models.validator import validate_manifest, get_manifest_from_file
+from specloop.deployment.claude import ClaudeDeployment
+from specloop.deployment.gemini import GeminiDeployment
+from specloop.deployment.opencode import OpenCodeDeployment
+from specloop.engine.loop import LoopRunner
+from specloop.parsers.epic_parser import EpicParser, EpicStatus
+from specloop.parsers.goal_parser import GoalParser
 
 
 @click.group()
 def cli():
-    """Agent-Agnostic Skills CLI"""
+    """SpecLoop: Agent-Agnostic Skills & Automation Framework"""
     pass
 
 
@@ -31,7 +36,7 @@ def discover(root, output, version):
 
 @cli.command()
 def init():
-    """Initialize a new project with the skills framework structure."""
+    """Initialize a new project with the SpecLoop structure."""
     root_path = Path(".").absolute()
 
     dirs = [
@@ -144,6 +149,79 @@ def deploy(target, manifest, autodiscover):
         click.echo(f"  - Scripts: {len(manifest_obj.scripts)}")
     else:
         click.echo(f"✗ Deployment to {target} failed.")
+
+
+@cli.command()
+@click.option("--file", default="EPICS.md", help="Path to EPICS.md file")
+@click.option("--goals", default="GOALS.md", help="Path to GOALS.md file")
+def run(file, goals):
+    """Run the autonomous developer loop (Python-driven)."""
+    root_dir = Path(os.getcwd())
+    epics_path = root_dir / file
+    goals_path = root_dir / goals
+
+    click.echo(f"Starting SpecLoop with {file}")
+
+    runner = LoopRunner(root_dir, epics_path, goals_path)
+    runner.run()
+
+
+@cli.command()
+@click.option("--file", default="EPICS.md", help="Path to EPICS.md file")
+@click.option("--goals", default="GOALS.md", help="Path to GOALS.md file")
+def next(file, goals):
+    """Get the next pending epic and project context as JSON."""
+    root_dir = Path(os.getcwd())
+    epics_path = root_dir / file
+    goals_path = root_dir / goals
+
+    epics = EpicParser.parse_file(epics_path)
+    goal = GoalParser.parse_file(goals_path)
+
+    pending = [e for e in epics if e.status == EpicStatus.PENDING]
+
+    if not pending:
+        click.echo(
+            json.dumps({"status": "complete", "message": "No pending epics found."})
+        )
+        return
+
+    current = pending[0]
+    output = {
+        "status": "todo",
+        "epic": {
+            "title": current.title,
+            "description": current.description,
+            "priority": current.priority,
+        },
+        "context": {"mission": goal.mission, "constraints": goal.constraints},
+    }
+    click.echo(json.dumps(output, indent=2))
+
+
+@cli.command()
+@click.argument("title")
+@click.option("--file", default="EPICS.md", help="Path to EPICS.md file")
+@click.option(
+    "--status",
+    default="Completed",
+    type=click.Choice(["Completed", "Failed", "In Progress", "Pending"]),
+)
+def update(title, file, status):
+    """Update the status of an epic in EPICS.md."""
+    root_dir = Path(os.getcwd())
+    epics_path = root_dir / file
+
+    # Map string back to EpicStatus
+    status_map = {
+        "Completed": EpicStatus.COMPLETED,
+        "Failed": EpicStatus.FAILED,
+        "In Progress": EpicStatus.IN_PROGRESS,
+        "Pending": EpicStatus.PENDING,
+    }
+
+    EpicParser.update_status(epics_path, title, status_map[status])
+    click.echo(f"Updated epic '{title}' to {status}")
 
 
 if __name__ == "__main__":

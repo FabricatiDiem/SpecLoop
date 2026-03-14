@@ -13,7 +13,7 @@ class Orchestrator:
         """
         Emits a recognizable instruction for an AI agent to intercept.
         """
-        print(f"\n[Orchestrator] Requesting SpecKit Action: {cmd}")
+        print(f"\n[Orchestrator] Requesting SpecLoop Action: {cmd}")
         if pre_prompt:
             print(f"[Orchestrator] Context: {pre_prompt}")
 

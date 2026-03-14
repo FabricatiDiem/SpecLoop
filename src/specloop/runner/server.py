@@ -4,7 +4,8 @@ import json
 from pathlib import Path
 from mcp.server import Server
 from mcp.types import Tool, TextContent
-from agent_agnostic.models.validator import get_manifest_from_file
+from specloop.models.validator import get_manifest_from_file
+
 
 def create_script_runner(manifest_path: Path, root_dir: Path):
     server = Server("script-runner")
@@ -14,20 +15,22 @@ def create_script_runner(manifest_path: Path, root_dir: Path):
     async def list_tools():
         tools = []
         for script in manifest.scripts:
-            tools.append(Tool(
-                name=script.id,
-                description=f"Run script: {script.name}",
-                inputSchema={
-                    "type": "object",
-                    "properties": {
-                        "args": {
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "description": "Arguments to pass to the script"
-                        }
-                    }
-                }
-            ))
+            tools.append(
+                Tool(
+                    name=script.id,
+                    description=f"Run script: {script.name}",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "args": {
+                                "type": "array",
+                                "items": {"type": "string"},
+                                "description": "Arguments to pass to the script",
+                            }
+                        },
+                    },
+                )
+            )
         return tools
 
     @server.call_tool()
@@ -49,13 +52,14 @@ def create_script_runner(manifest_path: Path, root_dir: Path):
 
     return server
 
+
 if __name__ == "__main__":
     from mcp.server.stdio import stdio_server
     import os
-    
+
     root = Path(os.getcwd())
     manifest_p = root / "skills.json"
-    
+
     if manifest_p.exists():
         srv = create_script_runner(manifest_p, root)
         asyncio.run(stdio_server(srv))

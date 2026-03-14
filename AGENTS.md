@@ -1,4 +1,4 @@
-# newSkills Development Guidelines
+# SpecLoop Development Guidelines
 
 Auto-generated from all feature plans. Last updated: 2026-03-13
 
@@ -7,9 +7,9 @@ Auto-generated from all feature plans. Last updated: 2026-03-13
 - Local filesystem (JSON manifest, directory-based artifact storage) (001-agent-agnostic-skills)
 - Python 3.11+, Bash/Shell + `click` (CLI), `pydantic` (Data Parsing), `git` (CLI), `pyyaml` (002-speckit-automation)
 - Filesystem (`EPICS.md`, `GOALS.md`, `specs/`) (002-speckit-automation)
-- Python 3.11+, Markdown + `newskills` (the local agent-agnostic framework) (003-goals-epics-drafting)
+- Python 3.11+, Markdown + `specloop` (the local agent-agnostic framework) (003-goals-epics-drafting)
 - Filesystem (Markdown files) (003-goals-epics-drafting)
-- Markdown, YAML + `newskills` (the local agent-agnostic framework) (004-roadmap-review-optimization)
+- Markdown, YAML + `specloop` (the local agent-agnostic framework) (004-roadmap-review-optimization)
 
 - Python 3.11+, Bash/Shell + `mcp` (SDK), `pydantic` (for manifest validation), `pyyaml` (001-agent-agnostic-skills)
 
