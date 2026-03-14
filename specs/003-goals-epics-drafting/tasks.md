@@ -24,9 +24,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create root `skills/` directory if missing
-- [ ] T002 Initialize `skills/project_goals.md` with basic frontmatter
-- [ ] T003 [P] Initialize `skills/project_epics.md` with basic frontmatter
+- [x] T001 Create root `skills/` directory if missing
+- [x] T002 Initialize `skills/project_goals.md` with basic frontmatter
+- [x] T003 [P] Initialize `skills/project_epics.md` with basic frontmatter
 
 ---
 
@@ -34,7 +34,7 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T004 Create a shared drafting prompt template or pattern for agent instructions
+- [x] T004 Create a shared drafting prompt template or pattern for agent instructions
 
 ---
 
@@ -46,10 +46,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Implement procedure in `skills/project_goals.md` to read `constitution.md` first
-- [ ] T006 [US1] Implement interactive drafting logic in `skills/project_goals.md` (Mission and Constraints)
-- [ ] T007 [US1] Add file write instruction for `GOALS.md` in `skills/project_goals.md`
-- [ ] T008 [US1] Add user confirmation gate before writing `GOALS.md`
+- [x] T005 [US1] Implement procedure in `skills/project_goals.md` to read `constitution.md` first
+- [x] T006 [US1] Implement interactive drafting logic in `skills/project_goals.md` (Mission and Constraints)
+- [x] T007 [US1] Add file write instruction for `GOALS.md` in `skills/project_goals.md`
+- [x] T008 [US1] Add user confirmation gate before writing `GOALS.md`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -63,11 +63,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Implement procedure in `skills/project_epics.md` to read `constitution.md` and `GOALS.md`
-- [ ] T010 [US2] Implement "Schema Template" block in `skills/project_epics.md` for strict enforcement of the `speckit-loop` format
-- [ ] T011 [US2] Implement logic to link each epic to at least one constitution principle
-- [ ] T012 [US2] Implement iterative refinement logic (Draft -> Review -> Finalize) in `skills/project_epics.md`
-- [ ] T013 [US2] Add file write instruction for `EPICS.md` in `skills/project_epics.md`
+- [x] T009 [US2] Implement procedure in `skills/project_epics.md` to read `constitution.md` and `GOALS.md`
+- [x] T010 [US2] Implement "Schema Template" block in `skills/project_epics.md` for strict enforcement of the `speckit-loop` format
+- [x] T011 [US2] Implement logic to link each epic to at least one constitution principle
+- [x] T012 [US2] Implement iterative refinement logic (Draft -> Review -> Finalize) in `skills/project_epics.md`
+- [x] T013 [US2] Add file write instruction for `EPICS.md` in `skills/project_epics.md`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -77,10 +77,11 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T014 [P] Update `README.md` with instructions for the new `/project.goals` and `/project.epics` commands
-- [ ] T015 Run `uv run skills discover` to verify new skills are correctly registered
-- [ ] T016 Run `uv run skills verify` to ensure the manifest is valid with the new skills
-- [ ] T017 [P] Finalize `quickstart.md` in `specs/003-goals-epics-drafting/` with real examples
+- [x] T014 [US1, US2] Manually verify drafting prompts via simulated agent run
+- [x] T015 [P] Update `README.md` with instructions for the new `/project.goals` and `/project.epics` commands
+- [x] T016 Run `uv run skills discover` to verify new skills are correctly registered
+- [x] T017 Run `uv run skills verify` to ensure the manifest is valid with the new skills
+- [x] T018 [P] Finalize `quickstart.md` in `specs/003-goals-epics-drafting/` with real examples
 
 ---
 

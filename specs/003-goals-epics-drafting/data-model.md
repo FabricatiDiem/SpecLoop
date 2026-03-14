@@ -20,7 +20,18 @@ An ordered list of high-level feature sets.
 | `Priority` | A sequential integer starting from 1. |
 | `Status` | A checkbox-based status (`Pending`, `In Progress`, `Completed`, `Failed`). |
 
-## 3. Relationships
+## 3. Prompt Template Entity
+
+Shared structure for drafting interactions.
+
+| Component | Description |
+| :--- | :--- |
+| `Context Loading` | Instruction to read specific project files (constitution, goals). |
+| `Propose Phase` | LLM generates suggestions based on user input or project context. |
+| `Review Phase` | User feedback loop to refine suggestions. |
+| `Write Phase` | Execution of file writes using the verified data. |
+
+## 4. Relationships
 
 - `constitution.md` -> defines the **Principles** that constrain the `GOALS.md`.
 - `GOALS.md` -> defines the **Mission** that informs the selection of `EPICS.md`.

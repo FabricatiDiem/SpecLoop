@@ -66,6 +66,44 @@ def init():
 
 
 @cli.command()
+@click.option("--manifest", default="skills.json", help="Path to manifest file")
+@click.option("--schema", help="Path to schema file")
+def verify(manifest, schema):
+    """Verify a manifest file against a schema."""
+    current_path = Path(".").absolute()
+    manifest_path = current_path / manifest
+
+    if not schema:
+        # 1. Try bundled schema first
+        bundled_schema = Path(__file__).parent / "schema" / "skills-schema.json"
+        if bundled_schema.exists():
+            schema_path = bundled_schema
+        else:
+            # 2. Fallback to searching current and parent directories
+            search_dirs = [current_path] + list(current_path.parents)
+            schema_path = None
+            for d in search_dirs:
+                possible_schemas = list(d.glob("specs/**/skills-schema.json"))
+                if possible_schemas:
+                    schema_path = possible_schemas[0]
+                    break
+
+        if not schema_path:
+            click.echo(
+                "Error: Could not find skills-schema.json automatically. Please provide --schema."
+            )
+            return
+    else:
+        schema_path = Path(schema).absolute()
+
+    click.echo(f"Verifying {manifest_path} against {schema_path}...")
+    if validate_manifest(str(manifest_path), str(schema_path)):
+        click.echo("✓ Manifest is valid.")
+    else:
+        click.echo("✗ Manifest validation failed.")
+
+
+@cli.command()
 @click.option(
     "--target",
     required=True,

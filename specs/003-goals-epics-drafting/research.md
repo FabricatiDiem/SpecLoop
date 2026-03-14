@@ -19,3 +19,11 @@ This document explores the logic and alignment strategies for the automated draf
 - **Decision**: The skills will follow a "Draft -> Review -> Finalize" pattern.
 - **Rationale**: Scaffolding a project mission or roadmap is high-stakes. The skill will first propose a set of items and then ask for user confirmation or adjustments before writing the final file.
 - **Integration**: Leverages the natural conversational abilities of agents like Claude or OpenCode.
+
+## Decision 4: Fallback Suggestion Strategy
+
+- **Decision**: If the user provides minimal input (e.g., just a title), the agent will analyze the repository's `constitution.md` and current directory structure to infer the project's purpose.
+- **Rationale**: This provides immediate value ("magic" setup) while keeping the user in control via the Review phase.
+- **Default Suggestions**:
+    - **Goals**: Focus on standard quality attributes (scalability, security) derived from the constitution.
+    - **Epics**: Propose standard lifecycle features (Authentication, API, UI, CI/CD) if no specific domain is provided.

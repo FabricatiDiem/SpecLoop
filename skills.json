@@ -3,18 +3,36 @@
   "repository": "newSkills",
   "skills": [
     {
+      "id": "project_goals",
+      "name": "Project Goals",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/project_goals.md",
+      "metadata": {
+        "description": "Draft or update the project's GOALS.md file"
+      },
+      "tags": []
+    },
+    {
       "id": "speckit_loop",
-      "name": "Speckit_Loop",
-      "path": "skills/speckit_loop.md",
+      "name": "Speckit Loop",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/speckit_loop.md",
       "metadata": {
         "description": "Start the autonomous SpecKit development loop"
       },
       "tags": []
     },
     {
+      "id": "project_epics",
+      "name": "Project Epics",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/project_epics.md",
+      "metadata": {
+        "description": "Draft or update the project's EPICS.md file"
+      },
+      "tags": []
+    },
+    {
       "id": "greet_user",
       "name": "Greet User",
-      "path": "skills/greet_user.md",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/greet_user.md",
       "metadata": {
         "name": "Greet User",
         "description": "A simple natural language skill to greet a user.",
@@ -40,7 +58,7 @@
       "id": "hello_world",
       "name": "Hello World",
       "type": "mcp",
-      "command": "python mcp_servers/hello_world/server.py",
+      "command": "python /Users/jake_personal/PycharmProjects/newSkills/mcp_servers/hello_world/server.py",
       "env": {},
       "capabilities": []
     }
@@ -49,7 +67,7 @@
     {
       "id": "speckit-loop",
       "name": "Speckit Loop",
-      "path": "subagents/speckit-loop.md",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/subagents/speckit-loop.md",
       "system_prompt": "# SpecKit Loop Agent\n\nYou are an autonomous orchestrator responsible for implementing the feature roadmap defined in `EPICS.md`.\n\n## Your Mission\n\nLoop through the `EPICS.md` file and implement every pending feature using the full GitHub SpecKit workflow.\n\n## The Process (Per Epic)\n\n1.  **Selection**: Read `EPICS.md` and find the first epic with `[ ] Status: Pending`.\n2.  **Preparation**: Create a new git branch for the epic.\n3.  **Specification**: Run `/speckit.specify [description from EPICS.md]`.\n4.  **Planning**: Run `/speckit.plan`.\n5.  **Taskification**: Run `/speckit.tasks`.\n6.  **Analysis**: Run `/speckit.analyze`. Accept all recommended remedies immediately.\n7.  **Implementation**: Run `/speckit.implement`.\n8.  **Verification**: Run the test suite (e.g., `pytest`) and linters as specified in `constitution.md`.\n9.  **Commitment**: Commit the changes in logical groups (one per phase).\n10. **Completion**: Update `EPICS.md` to `[x] Status: Completed`.\n11. **Repeat**: Move to the next pending epic.\n\n## Constraints\n\n-   You MUST adhere to the project's `constitution.md`.\n-   You MUST use the `Task` tool if you need to parallelize work.\n-   If an epic fails, mark it as `[!] Status: Failed` and provide a reason in `EPICS.md` before stopping or moving on.\n\nStart now by reading `EPICS.md`.",
       "dependencies": {
         "skills": [],
@@ -60,7 +78,7 @@
     {
       "id": "code_reviewer",
       "name": "Code Reviewer",
-      "path": "subagents/code_reviewer.md",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/subagents/code_reviewer.md",
       "system_prompt": "# Code Reviewer Instructions\n\nYou are a senior software engineer. Your task is to review code submitted by the user.\n1. Use the 'greet_user' skill to start the session.\n2. Analyze the code for common patterns and potential bugs.\n3. Suggest improvements based on best practices.",
       "dependencies": {
         "skills": [
@@ -80,7 +98,7 @@
       "id": "lint_check",
       "name": "Lint Check",
       "interpreter": "bash",
-      "path": "scripts/lint_check.sh",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/scripts/lint_check.sh",
       "args": []
     }
   ]

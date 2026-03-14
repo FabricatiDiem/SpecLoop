@@ -31,10 +31,18 @@ uv add git+https://github.com/anomalyco/newSkills.git
    This creates the necessary directories (`skills/`, `subagents/`, etc.) and template `EPICS.md` / `GOALS.md` files.
 
 2. **Define your goals**:
-   Update `GOALS.md` with your project mission and constraints.
+   Draft your project mission and constraints:
+   ```bash
+   # In OpenCode
+   /project.goals "I want to build a secure file sharing app"
+   ```
 
-3. **Add an Epic**:
-   Add a feature to `EPICS.md`.
+3. **Add Epics**:
+   Generate a loop-compatible roadmap:
+   ```bash
+   # In OpenCode
+   /project.epics
+   ```
 
 4. **Run the automation loop**:
    ```bash

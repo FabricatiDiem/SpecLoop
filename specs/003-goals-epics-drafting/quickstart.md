@@ -4,7 +4,7 @@ This guide explains how to use the new drafting skills to scaffold a project.
 
 ## 1. Draft Project Goals
 
-Trigger the goals skill:
+Trigger the goals skill in your agent:
 ```text
 /project.goals "I want to build a secure file sharing app"
 ```
@@ -15,7 +15,7 @@ The agent will:
 
 ## 2. Draft Project Epics
 
-Trigger the epics skill:
+Trigger the epics skill in your agent:
 ```text
 /project.epics
 ```
