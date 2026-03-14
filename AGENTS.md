@@ -9,6 +9,7 @@ Auto-generated from all feature plans. Last updated: 2026-03-13
 - Filesystem (`EPICS.md`, `GOALS.md`, `specs/`) (002-speckit-automation)
 - Python 3.11+, Markdown + `newskills` (the local agent-agnostic framework) (003-goals-epics-drafting)
 - Filesystem (Markdown files) (003-goals-epics-drafting)
+- Markdown, YAML + `newskills` (the local agent-agnostic framework) (004-roadmap-review-optimization)
 
 - Python 3.11+, Bash/Shell + `mcp` (SDK), `pydantic` (for manifest validation), `pyyaml` (001-agent-agnostic-skills)
 
@@ -28,9 +29,9 @@ cd src [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNOLO
 Python 3.11+, Bash/Shell: Follow standard conventions
 
 ## Recent Changes
+- 004-roadmap-review-optimization: Added Markdown, YAML + `newskills` (the local agent-agnostic framework)
 - 003-goals-epics-drafting: Added Python 3.11+, Markdown + `newskills` (the local agent-agnostic framework)
 - 002-speckit-automation: Added Python 3.11+, Bash/Shell + `click` (CLI), `pydantic` (Data Parsing), `git` (CLI), `pyyaml`
-- 001-agent-agnostic-skills: Added Python 3.11+, Bash/Shell + `mcp` (SDK), `pydantic`, `pyyaml`
 
 
 <!-- MANUAL ADDITIONS START -->
