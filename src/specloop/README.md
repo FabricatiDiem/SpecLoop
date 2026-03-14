@@ -1,4 +1,4 @@
-# Agent-Agnostic Skills Framework
+# SpecLoop: Agent-Agnostic Skills Framework
 
 This framework allows you to develop AI capabilities (skills, tools, scripts, subagents) that work across multiple AI agents like Claude Code, Gemini CLI, and OpenCode.
 
@@ -16,21 +16,21 @@ This framework allows you to develop AI capabilities (skills, tools, scripts, su
 Scan the repository to update the manifest:
 ```bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)/src
-python -m agent_agnostic.cli discover
+python -m specloop.cli discover
 ```
 
 ### 2. Verification
 Check the manifest against the schema:
 ```bash
-python -m agent_agnostic.cli verify
+python -m specloop.cli verify
 ```
 
 ### 3. Deployment
 Sync capabilities to your preferred agent:
 ```bash
-python -m agent_agnostic.cli deploy --target claude
-python -m agent_agnostic.cli deploy --target gemini
-python -m agent_agnostic.cli deploy --target opencode
+python -m specloop.cli deploy --target claude
+python -m specloop.cli deploy --target gemini
+python -m specloop.cli deploy --target opencode
 ```
 
 ## Structure
@@ -38,4 +38,4 @@ python -m agent_agnostic.cli deploy --target opencode
 - `mcp_servers/`: Executable tools.
 - `scripts/`: Task scripts.
 - `subagents/`: Agent definitions.
-- `src/agent_agnostic/`: Framework core logic.
+- `src/specloop/`: Framework core logic.

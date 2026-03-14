@@ -19,13 +19,17 @@ class GeminiDeployment(BaseDeployment):
         agents_deployed = 0
 
         # Sync skills (Markdown procedures)
+        # Gemini expects: .gemini/skills/{skill_id}/SKILL.md
         for skill in self.manifest.skills:
             src_path = Path(skill.path)
             if not src_path.exists():
                 self.log(f"Warning: Skill source not found: {src_path}")
                 continue
 
-            dest_path = skills_dir / f"{skill.id}.md"
+            skill_container = skills_dir / skill.id
+            skill_container.mkdir(exist_ok=True)
+            dest_path = skill_container / "SKILL.md"
+
             shutil.copy2(src_path, dest_path)
             skills_copied += 1
             self.log(
@@ -33,6 +37,7 @@ class GeminiDeployment(BaseDeployment):
             )
 
         # Sync subagents
+        # Gemini expects: .gemini/agents/{agent_id}.md with name/description in frontmatter
         for subagent in self.manifest.subagents:
             src_path = Path(subagent.path)
             if not src_path.exists():
@@ -50,11 +55,21 @@ class GeminiDeployment(BaseDeployment):
                     parts = content.split("---", 2)
                     if len(parts) >= 2:
                         frontmatter = yaml.safe_load(parts[1]) or {}
-                        # Standardize description for Gemini if missing
+
+                        # Gemini mandatory fields
+                        if "name" not in frontmatter:
+                            frontmatter["name"] = subagent.id
                         if "description" not in frontmatter:
                             frontmatter["description"] = (
                                 f"SpecLoop Subagent: {subagent.name}"
                             )
+
+                        # Gemini tools list (wildcard for simplicity, or inherit)
+                        # We use '*' to ensure the subagent has access to necessary tools
+                        if "tools" not in frontmatter or isinstance(
+                            frontmatter["tools"], dict
+                        ):
+                            frontmatter["tools"] = ["*"]
 
                         new_frontmatter = yaml.dump(frontmatter)
                         content = f"---\n{new_frontmatter}---{parts[2]}"
