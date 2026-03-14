@@ -48,6 +48,8 @@ def init():
         ".opencode/command",
         ".claude/commands",
         ".claude/agents",
+        ".gemini/skills",
+        ".gemini/agents",
     ]
     for d in dirs:
         (root_path / d).mkdir(parents=True, exist_ok=True)
