@@ -14,7 +14,7 @@ from specloop.parsers.goal_parser import GoalParser
 
 @click.group()
 def cli():
-    """SpecLoop: Agent-Agnostic Skills & Automation Framework"""
+    """SpecLoop: Agent-Agnostic Skills & Automation Framework (v0.1.1)"""
     pass
 
 
