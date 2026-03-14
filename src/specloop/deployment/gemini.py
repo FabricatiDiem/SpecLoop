@@ -26,15 +26,45 @@ class GeminiDeployment(BaseDeployment):
                 self.log(f"Warning: Skill source not found: {src_path}")
                 continue
 
-            skill_container = skills_dir / skill.id
+            # Ensure valid slug for directory name
+            skill_id_slug = skill.id.replace("_", "-")
+            skill_container = skills_dir / skill_id_slug
             skill_container.mkdir(exist_ok=True)
             dest_path = skill_container / "SKILL.md"
 
-            shutil.copy2(src_path, dest_path)
-            skills_copied += 1
-            self.log(
-                f"Copied skill {skill.id} to {dest_path.relative_to(self.root_dir)}"
-            )
+            # Ensure the frontmatter is compatible with Gemini
+            try:
+                with open(src_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+
+                if content.startswith("---"):
+                    parts = content.split("---", 2)
+                    if len(parts) >= 2:
+                        frontmatter = yaml.safe_load(parts[1]) or {}
+
+                        # Gemini mandatory fields for skills
+                        gemini_skill_frontmatter = {
+                            "name": skill_id_slug,  # Use the slugified ID as name
+                            "description": frontmatter.get("description", skill.name),
+                        }
+
+                        # Preserve other common fields if they exist
+                        for key in ["inputs", "handoffs", "tools"]:
+                            if key in frontmatter:
+                                gemini_skill_frontmatter[key] = frontmatter[key]
+
+                        new_frontmatter = yaml.dump(gemini_skill_frontmatter)
+                        content = f"---\n{new_frontmatter}---{parts[2]}"
+
+                with open(dest_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+
+                skills_copied += 1
+                self.log(
+                    f"Copied skill {skill.id} to {dest_path.relative_to(self.root_dir)}"
+                )
+            except Exception as e:
+                self.log(f"Error deploying skill {skill.id}: {e}")
 
         # Sync subagents
         # Gemini expects: .gemini/agents/{agent_id}.md with name/description in frontmatter
