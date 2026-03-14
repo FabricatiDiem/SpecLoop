@@ -4,7 +4,7 @@ An agent-agnostic framework for developing, deploying, and automating AI capabil
 
 ## Features
 
-- **Agent-Agnostic Skills**: Define skills once in Markdown and deploy to Claude Code, Gemini CLI, or OpenCode.
+- **Agent-Agnostic Skills**: Define skills once in Markdown and deploy to Claude Code, Gemini CLI, and OpenCode simultaneously.
 - **MCP Tool Integration**: Build executable tools as Model Context Protocol (MCP) servers.
 - **Autonomous Development Loop**: Automate the full GitHub SpecKit workflow (Specify -> Plan -> Tasks -> Implement -> Commit) via `EPICS.md` and `GOALS.md`.
 
@@ -28,33 +28,43 @@ uv add git+https://github.com/anomalyco/SpecLoop.git
    ```bash
    specloop init
    ```
-   This creates the necessary directories (`skills/`, `subagents/`, etc.) and template `EPICS.md` / `GOALS.md` files.
+   This creates the necessary directories (`skills/`, `subagents/`, etc.) and template `EPICS.md` / `GOALS.md` files for all supported agents.
 
 2. **Define your goals**:
    Draft your project mission and constraints:
    ```bash
-   # In OpenCode
+   # In OpenCode, Claude, or Gemini
    /project.goals "I want to build a secure file sharing app"
    ```
 
 3. **Add Epics**:
    Generate a loop-compatible roadmap:
    ```bash
-   # In OpenCode
+   # In OpenCode, Claude, or Gemini
    /project.epics
    ```
 
 4. **Review & Optimize Roadmap**:
    Audit alignment and optimize dependency ordering:
    ```bash
-   # In OpenCode
+   # In OpenCode, Claude, or Gemini
    /roadmap.review
    /roadmap.optimize
    ```
 
-5. **Run the automation loop**:
+5. **Deploy to Agents**:
+   Sync your capabilities to all your AI harnesses:
    ```bash
-   specloop run
+   specloop deploy --target all
+   ```
+
+6. **Run the automation loop**:
+   ```bash
+   # Use the autonomous agent in your harness
+   @specloop start the implementation loop
+   
+   # Or trigger it via command
+   /specloop
    ```
 
 ## Development

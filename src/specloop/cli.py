@@ -116,7 +116,7 @@ def verify(manifest, schema):
 @click.option(
     "--target",
     required=True,
-    type=click.Choice(["claude", "gemini", "opencode"]),
+    type=click.Choice(["claude", "gemini", "opencode", "all"]),
     help="Target harness to deploy to",
 )
 @click.option("--manifest", default="skills.json", help="Path to manifest file")
@@ -126,7 +126,7 @@ def verify(manifest, schema):
     help="Automatically run discovery before deployment",
 )
 def deploy(target, manifest, autodiscover):
-    """Deploy skills and tools to a target harness."""
+    """Deploy skills and tools to a target harness (or all harnesses)."""
     root_path = Path(".").absolute()
     manifest_path = root_path / manifest
 
@@ -137,22 +137,29 @@ def deploy(target, manifest, autodiscover):
     else:
         manifest_obj = get_manifest_from_file(str(manifest_path))
 
-    deployer = None
-    if target == "claude":
-        deployer = ClaudeDeployment(manifest_obj, root_path)
-    elif target == "gemini":
-        deployer = GeminiDeployment(manifest_obj, root_path)
-    elif target == "opencode":
-        deployer = OpenCodeDeployment(manifest_obj, root_path)
+    targets = [target]
+    if target == "all":
+        targets = ["claude", "gemini", "opencode"]
 
-    if deployer and deployer.deploy():
-        click.echo(f"✓ Deployment to {target} successful.")
-        click.echo(f"  - Skills: {len(manifest_obj.skills)}")
-        click.echo(f"  - Subagents: {len(manifest_obj.subagents)}")
-        click.echo(f"  - Tools: {len(manifest_obj.tools)}")
-        click.echo(f"  - Scripts: {len(manifest_obj.scripts)}")
-    else:
-        click.echo(f"✗ Deployment to {target} failed.")
+    for t in targets:
+        deployer = None
+        if t == "claude":
+            deployer = ClaudeDeployment(manifest_obj, root_path)
+        elif t == "gemini":
+            deployer = GeminiDeployment(manifest_obj, root_path)
+        elif t == "opencode":
+            deployer = OpenCodeDeployment(manifest_obj, root_path)
+
+        if deployer:
+            click.echo(f"Deploying to {t}...")
+            if deployer.deploy():
+                click.echo(f"✓ Deployment to {t} successful.")
+                click.echo(f"  - Skills: {len(manifest_obj.skills)}")
+                click.echo(f"  - Subagents: {len(manifest_obj.subagents)}")
+                click.echo(f"  - Tools: {len(manifest_obj.tools)}")
+                click.echo(f"  - Scripts: {len(manifest_obj.scripts)}")
+            else:
+                click.echo(f"✗ Deployment to {t} failed.")
 
 
 @cli.command()
