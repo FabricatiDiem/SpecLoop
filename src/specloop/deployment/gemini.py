@@ -56,22 +56,38 @@ class GeminiDeployment(BaseDeployment):
                     if len(parts) >= 2:
                         frontmatter = yaml.safe_load(parts[1]) or {}
 
-                        # Gemini mandatory fields
-                        if "name" not in frontmatter:
-                            frontmatter["name"] = subagent.id
-                        if "description" not in frontmatter:
-                            frontmatter["description"] = (
-                                f"SpecLoop Subagent: {subagent.name}"
-                            )
+                        # Gemini mandatory fields and strict schema
+                        # We create a new dict to ensure no unrecognized keys are passed
+                        gemini_frontmatter = {
+                            "name": subagent.id.replace("_", "-"),  # Ensure valid slug
+                            "description": frontmatter.get(
+                                "description", f"SpecLoop Subagent: {subagent.name}"
+                            ),
+                            "kind": frontmatter.get("kind", "local"),
+                        }
 
-                        # Gemini tools list (wildcard for simplicity, or inherit)
-                        # We use '*' to ensure the subagent has access to necessary tools
-                        if "tools" not in frontmatter or isinstance(
-                            frontmatter["tools"], dict
-                        ):
-                            frontmatter["tools"] = ["*"]
+                        # Gemini tools list (must be array of strings)
+                        # We use ['*'] by default to ensure access to all tools
+                        tools = frontmatter.get("tools", ["*"])
+                        if isinstance(tools, dict):
+                            # If it was an object (OpenCode style), convert to list
+                            tools = ["*"]
+                        elif not isinstance(tools, list):
+                            tools = [str(tools)]
 
-                        new_frontmatter = yaml.dump(frontmatter)
+                        gemini_frontmatter["tools"] = tools
+
+                        # Optional Gemini fields
+                        for key in [
+                            "model",
+                            "temperature",
+                            "max_turns",
+                            "timeout_mins",
+                        ]:
+                            if key in frontmatter:
+                                gemini_frontmatter[key] = frontmatter[key]
+
+                        new_frontmatter = yaml.dump(gemini_frontmatter)
                         content = f"---\n{new_frontmatter}---{parts[2]}"
 
                 with open(dest_path, "w", encoding="utf-8") as f:
