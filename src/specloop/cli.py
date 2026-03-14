@@ -46,7 +46,7 @@ def init():
         "scripts",
         ".opencode/agents",
         ".opencode/command",
-        ".claude/skills",
+        ".claude/commands",
         ".claude/agents",
     ]
     for d in dirs:

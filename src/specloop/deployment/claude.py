@@ -13,7 +13,8 @@ class ClaudeDeployment(BaseDeployment):
             target_root = self.root_dir / ".claudecode"
             self.log(f"Detected existing .claudecode/ directory, using as target.")
 
-        skills_dir = target_root / "skills"
+        # Claude uses 'commands' for skills and 'agents' for subagents
+        skills_dir = target_root / "commands"
         agents_dir = target_root / "agents"
 
         skills_dir.mkdir(parents=True, exist_ok=True)
