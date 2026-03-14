@@ -46,6 +46,8 @@ def init():
         "scripts",
         ".opencode/agents",
         ".opencode/command",
+        ".claude/skills",
+        ".claude/agents",
     ]
     for d in dirs:
         (root_path / d).mkdir(parents=True, exist_ok=True)
