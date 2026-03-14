@@ -44,7 +44,15 @@ uv add git+https://github.com/anomalyco/newSkills.git
    /project.epics
    ```
 
-4. **Run the automation loop**:
+4. **Review & Optimize Roadmap**:
+   Audit alignment and optimize dependency ordering:
+   ```bash
+   # In OpenCode
+   /roadmap.review
+   /roadmap.optimize
+   ```
+
+5. **Run the automation loop**:
    ```bash
    speckit-loop run
    ```

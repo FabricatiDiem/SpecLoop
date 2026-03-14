@@ -16,7 +16,7 @@ The agent will:
 
 ## 2. Run Dependency Optimization
 
-Trigger the optimization skill:
+Trigger the optimization skill in your agent:
 ```text
 /roadmap.optimize
 ```

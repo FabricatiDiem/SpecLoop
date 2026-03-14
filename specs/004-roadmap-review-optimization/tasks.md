@@ -24,9 +24,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan: `skills/`
-- [ ] T002 Initialize `skills/roadmap_review.md` with basic frontmatter
-- [ ] T003 [P] Initialize `skills/roadmap_optimize.md` with basic frontmatter
+- [x] T001 Create project structure per implementation plan: `skills/`
+- [x] T002 Initialize `skills/roadmap_review.md` with basic frontmatter
+- [x] T003 [P] Initialize `skills/roadmap_optimize.md` with basic frontmatter
 
 ---
 
@@ -36,8 +36,8 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Define shared Requirement Matrix prompts in `research.md`
-- [ ] T005 [P] Create a mock project roadmap with known dependency conflicts for testing in `tests/fixtures/EPICS_MOCK.md`
+- [x] T004 Define shared Requirement Matrix prompts in `research.md`
+- [x] T005 [P] Create a mock project roadmap with known dependency conflicts for testing in `tests/fixtures/EPICS_MOCK.md`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -51,11 +51,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Implement context loading (read constitution, goals, epics) in `skills/roadmap_review.md`
-- [ ] T007 [US1] Implement Requirement Mapping logic (Gap detection) with explicit principle citations in `skills/roadmap_review.md`
-- [ ] T008 [US1] Implement Status Alignment logic (dependency vs status check) in `skills/roadmap_review.md`
-- [ ] T009 [US1] Define structured output format (Markdown tables) in `skills/roadmap_review.md`
-- [ ] T010 [US1] Manually audit audit results against `EPICS_MOCK.md` to verify accuracy (Self-verification gate)
+- [x] T006 [US1] Implement context loading (read constitution, goals, epics) in `skills/roadmap_review.md`
+- [x] T007 [US1] Implement Requirement Mapping logic (Gap detection) with explicit principle citations in `skills/roadmap_review.md`
+- [x] T008 [US1] Implement Status Alignment logic (dependency vs status check) in `skills/roadmap_review.md`
+- [x] T009 [US1] Define structured output format (Markdown tables) in `skills/roadmap_review.md`
+- [x] T010 [US1] Manually audit audit results against `EPICS_MOCK.md` to verify accuracy (Self-verification gate)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -69,11 +69,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T011 [US2] Implement dependency extraction logic from epic descriptions in `skills/roadmap_optimize.md`
-- [ ] T012 [US2] Implement topological sorting logic with foundational tie-breakers and principle citations in `skills/roadmap_optimize.md`
-- [ ] T013 [US2] Implement impossible state detection logic in `skills/roadmap_optimize.md`
-- [ ] T014 [US2] Add literal `EPICS.md` output generation per contract in `skills/roadmap_optimize.md`
-- [ ] T015 [US2] Verify optimized ordering logic against complex DAG scenarios in `tests/fixtures/EPICS_MOCK.md` (Self-verification gate)
+- [x] T011 [US2] Implement dependency extraction logic from epic descriptions in `skills/roadmap_optimize.md`
+- [x] T012 [US2] Implement topological sorting logic with foundational tie-breakers and principle citations in `skills/roadmap_optimize.md`
+- [x] T013 [US2] Implement impossible state detection logic in `skills/roadmap_optimize.md`
+- [x] T014 [US2] Add literal `EPICS.md` output generation per contract in `skills/roadmap_optimize.md`
+- [x] T015 [US2] Verify optimized ordering logic against complex DAG scenarios in `tests/fixtures/EPICS_MOCK.md` (Self-verification gate)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -83,10 +83,10 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T016 [P] Update project `README.md` with instructions for `/roadmap.review` and `/roadmap.optimize`
-- [ ] T017 Run `uv run skills discover` to verify registration of new skills
-- [ ] T018 Run `uv run skills verify` to ensure manifest validity
-- [ ] T019 [P] Finalize `quickstart.md` in `specs/004-roadmap-review-optimization/` with real-world examples
+- [x] T016 [P] Update project `README.md` with instructions for `/roadmap.review` and `/roadmap.optimize`
+- [x] T017 Run `uv run skills discover` to verify registration of new skills
+- [x] T018 Run `uv run skills verify` to ensure manifest validity
+- [x] T019 [P] Finalize `quickstart.md` in `specs/004-roadmap-review-optimization/` with real-world examples
 
 ---
 

@@ -3,6 +3,15 @@
   "repository": "newSkills",
   "skills": [
     {
+      "id": "roadmap_review",
+      "name": "Roadmap Review",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/roadmap_review.md",
+      "metadata": {
+        "description": "Audit the project roadmap against goals and constitution"
+      },
+      "tags": []
+    },
+    {
       "id": "project_goals",
       "name": "Project Goals",
       "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/project_goals.md",
@@ -49,6 +58,15 @@
             "prompt": "Proceed to the next task..."
           }
         ]
+      },
+      "tags": []
+    },
+    {
+      "id": "roadmap_optimize",
+      "name": "Roadmap Optimize",
+      "path": "/Users/jake_personal/PycharmProjects/newSkills/skills/roadmap_optimize.md",
+      "metadata": {
+        "description": "Optimize the roadmap execution order based on dependencies and priorities"
       },
       "tags": []
     }
